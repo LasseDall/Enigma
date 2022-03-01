@@ -23,10 +23,19 @@ public class Main {
     public void cæsarKryptér(){
         System.out.printf("Cæsar kryptering %n  Indtast tekst %n");
         String tekst = sc.nextLine();
-        System.out.println("Vælg shift (0-29)");
+        System.out.println("  Vælg shift (0-29)");
         int shift = sc.nextInt();
-        System.out.println("Kodeteksten er");
-        System.out.println("XXXXXXXXX");
+        System.out.println("  Kodeteksten er");
+        System.out.println("  XXXXXXXXX");
+    }
+
+    public void vigenéreKryptér(){
+        System.out.printf("Vigenére kryptering %n  Indtast tekst %n");
+        String tekst = sc.nextLine();
+        System.out.println("  Indtast nøgleord");
+        int shift = sc.nextInt();
+        System.out.println("  Kodeteksten er");
+        System.out.println("  XXXXXXXXX");
     }
 
     public int bogstavTilTal(char bogstav){
@@ -49,6 +58,6 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Main obj = new Main();
-        obj.cæsarKryptér();
+        obj.vigenéreKryptér();
     }
 }
