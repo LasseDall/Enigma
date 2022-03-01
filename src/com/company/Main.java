@@ -9,12 +9,12 @@ public class Main {
 
     Scanner sc = new Scanner(System.in);
 
-    public void udskrivHovedenu(){
+    public void udskrivHovedenu() {
         System.out.printf("1) Cæsar %n2) Vigenére %n0) Exit %n");
         valgHovedmenu();
     }
 
-    public void valgHovedmenu(){
+    public void valgHovedmenu() {
         int valg = sc.nextInt();
         if (valg == 1) {
             udskrivCæsarMenu();
@@ -28,15 +28,41 @@ public class Main {
         }
     }
 
-    public void udskrivCæsarMenu(){
-        System.out.printf("Cæsar %n  1) Kryptér eller %n  2) Dekryptér");
+    public void udskrivCæsarMenu() {
+        System.out.printf("Cæsar %n  1) Kryptér eller %n  2) Dekryptér %n");
+        valgCæsarMenu();
     }
 
-    public void udskrivVigenéreMenu(){
-        System.out.printf("Vigenére %n  1) Kryptér eller %n  2) Dekryptér");
+    public void valgCæsarMenu() {
+        int valg = sc.nextInt();
+        if (valg == 1) {
+            cæsarKryptér();
+        } else if (valg == 2) {
+            cæsarDekryptér();
+        } else {
+            System.out.println("Indtast dit valg igen");
+            valgCæsarMenu();
+        }
     }
 
-    public void cæsarKryptér(){
+    public void udskrivVigenéreMenu() {
+        System.out.printf("Vigenére %n  1) Kryptér eller %n  2) Dekryptér %n");
+        valgVigenéreMenu();
+    }
+
+    public void valgVigenéreMenu() {
+        int valg = sc.nextInt();
+        if (valg == 1) {
+            vigenéreKryptér();
+        } else if (valg == 2) {
+            vigenéreDekryptér();
+        } else {
+            System.out.println("Indtast dit valg igen");
+            valgVigenéreMenu();
+        }
+    }
+
+    public void cæsarKryptér() {
         System.out.printf("Cæsar kryptering %n  Indtast tekst %n");
         String tekst = sc.nextLine();
         System.out.println("  Vælg shift (0-29)");
@@ -45,7 +71,7 @@ public class Main {
         System.out.println("  XXXXXXXXX");
     }
 
-    public void cæsarDekryptér(){
+    public void cæsarDekryptér() {
         System.out.printf("Cæsar dekryptering %n  Indtast kodetekst %n");
         String kodetekst = sc.nextLine();
         System.out.println("  Vælg shift (0-29)");
@@ -54,7 +80,8 @@ public class Main {
         System.out.println("  XXXXXXXXX");
     }
 
-    public void vigenéreKryptér(){
+    public void vigenéreKryptér() {
+        sc.nextInt();
         System.out.printf("Vigenére kryptering %n  Indtast tekst %n");
         String tekst = sc.nextLine();
         System.out.println("  Indtast nøgleord");
@@ -63,7 +90,7 @@ public class Main {
         System.out.println("  XXXXXXXXX");
     }
 
-    public void vigenéreDekryptér(){
+    public void vigenéreDekryptér() {
         System.out.printf("Vigenére dekryptering %n  Indtast kodetekst %n");
         String kodetekst = sc.nextLine();
         System.out.println("  Indtast nøgleord");
@@ -72,18 +99,18 @@ public class Main {
         System.out.println("  XXXXXXXXX");
     }
 
-    public void udskrivPostKryptérMenu(){
+    public void udskrivPostKryptérMenu() {
         System.out.printf("1) Ny tekst %n2) Dekryptér%n0) Hovedmenu");
     }
 
-    public void udskrivPostDekryptérMenu(){
+    public void udskrivPostDekryptérMenu() {
         System.out.printf("1) Ny kodetekst %n2) Kryptér%n0) Hovedmenu");
     }
 
-    public int bogstavTilTal(char bogstav){
+    public int bogstavTilTal(char bogstav) {
         int index = -1;
-        for (int i=0; i< alfabet.length; i++){
-            if(bogstav ==alfabet[i]){
+        for (int i=0; i< alfabet.length; i++) {
+            if(bogstav ==alfabet[i]) {
                 index = i;
                 i = alfabet.length;
             }
@@ -91,12 +118,12 @@ public class Main {
         return index;
     }
 
-    public char talTilBogstav(int tal){
+    public char talTilBogstav(int tal) {
         char bogstav = alfabet[tal];
         return bogstav;
     }
 
-    public StringBuilder cæsarTekstTilKode(String tekst, int shift){
+    public StringBuilder cæsarTekstTilKode(String tekst, int shift) {
         tekst = tekst.toUpperCase(Locale.ROOT);
         StringBuilder kodetekst = new StringBuilder();
         int kodeværdi;
@@ -117,7 +144,7 @@ public class Main {
         return kodetekst;
     }
 
-    public StringBuilder cæsarKodeTilTekst(String kodetekst, int shift){
+    public StringBuilder cæsarKodeTilTekst(String kodetekst, int shift) {
         kodetekst = kodetekst.toUpperCase(Locale.ROOT);
         StringBuilder tekst = new StringBuilder();
         int talværdi;
@@ -142,6 +169,6 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Main obj = new Main();
-        obj.udskrivHovedenu();
+        obj.udskrivVigenéreMenu();
     }
 }
