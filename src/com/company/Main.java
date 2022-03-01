@@ -91,9 +91,10 @@ public class Main {
         String tekst = sc.nextLine();
         tekst = sc.nextLine();
         System.out.println("  Indtast nøgleord");
-        int nøgleord = sc.nextInt();
+        String nøgleord = sc.nextLine();
+        String kodetekst = String.valueOf(viginéreTekstTilKode(tekst, nøgleord));
         System.out.println("  Kodeteksten er");
-        System.out.println("  XXXXXXXXX");
+        System.out.println("    " + kodetekst);
         udskrivPostViginéreKryptérMenu();
     }
 
@@ -102,9 +103,10 @@ public class Main {
         String kodetekst = sc.nextLine();
         kodetekst = sc.nextLine();
         System.out.println("  Indtast nøgleord");
-        int nøgleord = sc.nextInt();
+        String nøgleord = sc.nextLine();
+        String originaltekst = String.valueOf(viginéreKodeTilTekst(kodetekst, nøgleord));
         System.out.println("  Originalteksten er");
-        System.out.println("  XXXXXXXXX");
+        System.out.println("    " + originaltekst);
         udskrivPostViginéreDekryptérMenu();
     }
 
@@ -183,7 +185,12 @@ public class Main {
         return index;
     }
 
-    public char talTilBogstav(int tal) {
+    public char talTilBogstav(int tal){
+        if (tal > 29) {
+            tal = tal - 29;
+        } else if (tal < 0) {
+            tal = tal + 29;
+        }
         char bogstav = alfabet[tal];
         return bogstav;
     }
@@ -200,9 +207,6 @@ public class Main {
             } else {
                 kodeværdi = 0;
             }
-            if (kodeværdi > 29) {
-                kodeværdi = kodeværdi - 29;
-            }
             char kodeBogstav = talTilBogstav(kodeværdi);
             kodetekst.append(kodeBogstav);
         }
@@ -218,16 +222,73 @@ public class Main {
             int kodeværdi = bogstavTilTal(kodebogstav);
             if (kodeværdi != 0) {
                 talværdi = kodeværdi - shift;
+                if (talværdi == 0) {
+                    talværdi = 29;
+                }
             } else {
                 talværdi = 0;
-            }
-            if (talværdi < 0) {
-                talværdi = talværdi + 29;
             }
             char bogstav = talTilBogstav(talværdi);
             tekst.append(bogstav);
         }
         return tekst;
+    }
+
+    public StringBuilder viginéreTekstTilKode(String tekst, String nøgleord) {
+        tekst = tekst.toUpperCase(Locale.ROOT);
+        nøgleord = nøgleord.toUpperCase(Locale.ROOT);
+        StringBuilder kodetekst = new StringBuilder();
+        StringBuilder nøgletekst = new StringBuilder();
+        nøgletekst.append(nøgleord);
+        int nøgleværdi;
+        char kodebogstav;
+        for (int i = 0; i < tekst.length(); i++) {
+            char bogstav = tekst.charAt(i);
+            int bogstavværdi = bogstavTilTal(bogstav);
+            if (i == nøgletekst.length()) {
+                nøgletekst.append(nøgleord);
+            }
+            char nøglebogstav = nøgletekst.charAt(i);
+            nøgleværdi = bogstavTilTal(nøglebogstav) - 1;
+            if (bogstavværdi != 0) {
+                int kodeværdi = bogstavværdi + nøgleværdi;
+                kodebogstav = talTilBogstav(kodeværdi);
+            } else {
+                kodebogstav = ' ';
+            }
+            kodetekst.append(kodebogstav);
+        }
+        return kodetekst;
+    }
+
+    public StringBuilder viginéreKodeTilTekst(String kodetekst, String nøgleord) {
+        kodetekst = kodetekst.toUpperCase(Locale.ROOT);
+        nøgleord = nøgleord.toUpperCase(Locale.ROOT);
+        StringBuilder originaltekst = new StringBuilder();
+        StringBuilder nøgletekst = new StringBuilder();
+        nøgletekst.append(nøgleord);
+        int nøgleværdi;
+        char originalbogstav;
+        for (int i = 0; i < kodetekst.length(); i++) {
+            char kodebogstav = kodetekst.charAt(i);
+            int kodeværdi = bogstavTilTal(kodebogstav);
+            if (i == nøgletekst.length()) {
+                nøgletekst.append(nøgleord);
+            }
+            char nøglebogstav = nøgletekst.charAt(i);
+            nøgleværdi = bogstavTilTal(nøglebogstav) - 1;
+            if (kodeværdi != 0) {
+                int originalværdi = kodeværdi - nøgleværdi;
+                if (originalværdi == 0) {
+                    originalværdi = 29;
+                }
+                originalbogstav = talTilBogstav(originalværdi);
+            } else {
+                originalbogstav = ' ';
+            }
+            originaltekst.append(originalbogstav);
+        }
+        return originaltekst;
     }
 
 
