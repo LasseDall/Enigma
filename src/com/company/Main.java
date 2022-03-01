@@ -8,6 +8,15 @@ public class Main {
         System.out.printf("1) Cæsar %n2) Vigenére %n0) Exit");
     }
 
+    public void udskrivCæsarMenu(){
+        System.out.printf("Cæsar %n  Kryptér eller %n  Dekryptér");
+    }
+
+    public void udskrivVigenéreMenu(){
+        System.out.printf("Vigenére %n  Kryptér eller %n  Dekryptér");
+
+    }
+
     public int bogstavTilTal(char bogstav){
         int index = -1;
         for (int i=0; i< alfabet.length; i++){
@@ -27,5 +36,7 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+        Main obj = new Main();
+        obj.udskrivVigenéreMenu();
     }
 }
