@@ -68,8 +68,9 @@ public class Main {
         tekst = sc.nextLine();
         System.out.println("  Vælg shift (0-29)");
         int shift = sc.nextInt();
+        String kodetekst = String.valueOf(cæsarTekstTilKode(tekst, shift));
         System.out.println("  Kodeteksten er");
-        System.out.println("  XXXXXXXXX");
+        System.out.println("   " + kodetekst );
         udskrivPostCæsarKryptérMenu();
     }
 
@@ -79,8 +80,9 @@ public class Main {
         kodetekst = sc.nextLine();
         System.out.println("  Vælg shift (0-29)");
         int shift = sc.nextInt();
+        String originaltekst = String.valueOf(cæsarKodeTilTekst(kodetekst, shift));
         System.out.println("  Originalteksten er");
-        System.out.println("  XXXXXXXXX");
+        System.out.println("    " + originaltekst);
         udskrivPostCæsarDekryptérMenu();
     }
 
