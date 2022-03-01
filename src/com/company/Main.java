@@ -102,11 +102,32 @@ public class Main {
         return kodetekst;
     }
 
+    public StringBuilder cæsarKodeTilTekst(String kodetekst, int shift){
+        kodetekst = kodetekst.toUpperCase(Locale.ROOT);
+        StringBuilder tekst = new StringBuilder();
+        int talværdi;
+        for (int i = 0; i < kodetekst.length(); i++) {
+            char kodebogstav = kodetekst.charAt(i);
+            int kodeværdi = bogstavTilTal(kodebogstav);
+            if (kodeværdi != 0) {
+                talværdi = kodeværdi - shift;
+            } else {
+                talværdi = 0;
+            }
+            if (talværdi < 0) {
+                talværdi = talværdi + 29;
+            }
+            char bogstav = talTilBogstav(talværdi);
+            tekst.append(bogstav);
+        }
+        return tekst;
+    }
+
 
     public static void main(String[] args) {
 	// write your code here
         Main obj = new Main();
-        String talværdi = String.valueOf(obj.cæsarTekstTilKode("Lasse Dall Mikkelsen", 11));
+        String talværdi = String.valueOf(obj.cæsarKodeTilTekst("WLAAP OLWW XTVVPWAPY", 11));
         System.out.println(talværdi);
     }
 }
