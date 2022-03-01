@@ -1,8 +1,12 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Main {
 
     char[] alfabet = {' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Æ', 'Ø', 'Å'};
+
+    Scanner sc = new Scanner(System.in);
 
     public void udskrivMenu(){
         System.out.printf("1) Cæsar %n2) Vigenére %n0) Exit");
@@ -14,7 +18,15 @@ public class Main {
 
     public void udskrivVigenéreMenu(){
         System.out.printf("Vigenére %n  Kryptér eller %n  Dekryptér");
+    }
 
+    public void cæsarKryptér(){
+        System.out.printf("Cæsar kryptering %n  Indtast tekst %n");
+        String tekst = sc.nextLine();
+        System.out.println("Vælg shift (0-29)");
+        int shift = sc.nextInt();
+        System.out.println("Kodeteksten er");
+        System.out.println("XXXXXXXXX");
     }
 
     public int bogstavTilTal(char bogstav){
@@ -37,6 +49,6 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Main obj = new Main();
-        obj.udskrivVigenéreMenu();
+        obj.cæsarKryptér();
     }
 }
