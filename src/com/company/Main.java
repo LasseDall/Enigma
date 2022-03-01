@@ -29,12 +29,30 @@ public class Main {
         System.out.println("  XXXXXXXXX");
     }
 
+    public void cæsarDekryptér(){
+        System.out.printf("Cæsar dekryptering %n  Indtast kodetekst %n");
+        String kodetekst = sc.nextLine();
+        System.out.println("  Vælg shift (0-29)");
+        int shift = sc.nextInt();
+        System.out.println("  Originalteksten er");
+        System.out.println("  XXXXXXXXX");
+    }
+
     public void vigenéreKryptér(){
         System.out.printf("Vigenére kryptering %n  Indtast tekst %n");
         String tekst = sc.nextLine();
         System.out.println("  Indtast nøgleord");
-        int shift = sc.nextInt();
+        int nøgleord = sc.nextInt();
         System.out.println("  Kodeteksten er");
+        System.out.println("  XXXXXXXXX");
+    }
+
+    public void vigenéreDekryptér(){
+        System.out.printf("Vigenére dekryptering %n  Indtast kodetekst %n");
+        String kodetekst = sc.nextLine();
+        System.out.println("  Indtast nøgleord");
+        int nøgleord = sc.nextInt();
+        System.out.println("  Originalteksten er");
         System.out.println("  XXXXXXXXX");
     }
 
@@ -58,6 +76,6 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Main obj = new Main();
-        obj.vigenéreKryptér();
+        obj.cæsarDekryptér();
     }
 }
