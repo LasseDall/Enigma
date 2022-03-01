@@ -8,7 +8,7 @@ public class Main {
 
     Scanner sc = new Scanner(System.in);
 
-    public void udskrivMenu(){
+    public void udskrivHovedenu(){
         System.out.printf("1) Cæsar %n2) Vigenére %n0) Exit");
     }
 
@@ -56,6 +56,14 @@ public class Main {
         System.out.println("  XXXXXXXXX");
     }
 
+    public void udskrivPostKryptérMenu(){
+        System.out.printf("1) Ny tekst %n2) Dekryptér%n0) Hovedmenu");
+    }
+
+    public void udskrivPostDekryptérMenu(){
+        System.out.printf("1) Ny kodetekst %n2) Kryptér%n0) Hovedmenu");
+    }
+
     public int bogstavTilTal(char bogstav){
         int index = -1;
         for (int i=0; i< alfabet.length; i++){
@@ -76,6 +84,6 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Main obj = new Main();
-        obj.cæsarDekryptér();
+        obj.udskrivPostKryptérMenu();
     }
 }
