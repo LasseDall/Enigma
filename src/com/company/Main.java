@@ -10,15 +10,30 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     public void udskrivHovedenu(){
-        System.out.printf("1) Cæsar %n2) Vigenére %n0) Exit");
+        System.out.printf("1) Cæsar %n2) Vigenére %n0) Exit %n");
+        valgHovedmenu();
+    }
+
+    public void valgHovedmenu(){
+        int valg = sc.nextInt();
+        if (valg == 1) {
+            udskrivCæsarMenu();
+        } else if (valg == 2) {
+            udskrivVigenéreMenu();
+        } else if (valg == 0) {
+            System.exit(0);
+        } else {
+            System.out.println("Indtast dit valg igen");
+            valgHovedmenu();
+        }
     }
 
     public void udskrivCæsarMenu(){
-        System.out.printf("Cæsar %n  Kryptér eller %n  Dekryptér");
+        System.out.printf("Cæsar %n  1) Kryptér eller %n  2) Dekryptér");
     }
 
     public void udskrivVigenéreMenu(){
-        System.out.printf("Vigenére %n  Kryptér eller %n  Dekryptér");
+        System.out.printf("Vigenére %n  1) Kryptér eller %n  2) Dekryptér");
     }
 
     public void cæsarKryptér(){
@@ -127,7 +142,6 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Main obj = new Main();
-        String talværdi = String.valueOf(obj.cæsarKodeTilTekst("WLAAP OLWW XTVVPWAPY", 11));
-        System.out.println(talværdi);
+        obj.udskrivHovedenu();
     }
 }
