@@ -65,46 +65,109 @@ public class Main {
     public void cæsarKryptér() {
         System.out.printf("Cæsar kryptering %n  Indtast tekst %n");
         String tekst = sc.nextLine();
+        tekst = sc.nextLine();
         System.out.println("  Vælg shift (0-29)");
         int shift = sc.nextInt();
         System.out.println("  Kodeteksten er");
         System.out.println("  XXXXXXXXX");
+        udskrivPostCæsarKryptérMenu();
     }
 
     public void cæsarDekryptér() {
         System.out.printf("Cæsar dekryptering %n  Indtast kodetekst %n");
         String kodetekst = sc.nextLine();
+        kodetekst = sc.nextLine();
         System.out.println("  Vælg shift (0-29)");
         int shift = sc.nextInt();
         System.out.println("  Originalteksten er");
         System.out.println("  XXXXXXXXX");
+        udskrivPostCæsarDekryptérMenu();
     }
 
     public void vigenéreKryptér() {
-        sc.nextInt();
         System.out.printf("Vigenére kryptering %n  Indtast tekst %n");
         String tekst = sc.nextLine();
+        tekst = sc.nextLine();
         System.out.println("  Indtast nøgleord");
         int nøgleord = sc.nextInt();
         System.out.println("  Kodeteksten er");
         System.out.println("  XXXXXXXXX");
+        udskrivPostViginéreKryptérMenu();
     }
 
     public void vigenéreDekryptér() {
         System.out.printf("Vigenére dekryptering %n  Indtast kodetekst %n");
         String kodetekst = sc.nextLine();
+        kodetekst = sc.nextLine();
         System.out.println("  Indtast nøgleord");
         int nøgleord = sc.nextInt();
         System.out.println("  Originalteksten er");
         System.out.println("  XXXXXXXXX");
+        udskrivPostViginéreDekryptérMenu();
     }
 
-    public void udskrivPostKryptérMenu() {
-        System.out.printf("1) Ny tekst %n2) Dekryptér%n0) Hovedmenu");
+    public void udskrivPostViginéreKryptérMenu() {
+        System.out.printf("1) Ny tekst %n2) Dekryptér%n0) Hovedmenu %n");
+        valgPostViginéreKryptérMenu();
     }
 
-    public void udskrivPostDekryptérMenu() {
-        System.out.printf("1) Ny kodetekst %n2) Kryptér%n0) Hovedmenu");
+    public void udskrivPostCæsarKryptérMenu() {
+        System.out.printf("1) Ny tekst %n2) Dekryptér%n0) Hovedmenu %n");
+        valgPostCæsarKryptérMenu();
+    }
+
+    public void udskrivPostViginéreDekryptérMenu() {
+        System.out.printf("1) Ny kodetekst %n2) Kryptér%n0) Hovedmenu %n");
+        valgPostViginéreDekryptérMenu();
+    }
+
+    public void udskrivPostCæsarDekryptérMenu() {
+        System.out.printf("1) Ny kodetekst %n2) Kryptér%n0) Hovedmenu %n");
+        valgPostCæsarDekryptérMenu();
+    }
+
+    public void valgPostViginéreKryptérMenu() {
+        int valg = sc.nextInt();
+        if (valg == 1) {
+            vigenéreKryptér();
+        } else if (valg == 2) {
+            vigenéreDekryptér();
+        } else {
+            udskrivHovedenu();
+        }
+    }
+
+    public void valgPostViginéreDekryptérMenu() {
+        int valg = sc.nextInt();
+        if (valg == 1) {
+            vigenéreDekryptér();
+        } else if (valg == 2) {
+            vigenéreKryptér();
+        } else {
+            udskrivHovedenu();
+        }
+    }
+
+    public void valgPostCæsarKryptérMenu() {
+        int valg = sc.nextInt();
+        if (valg == 1) {
+            cæsarKryptér();
+        } else if (valg == 2) {
+            cæsarDekryptér();
+        } else {
+            udskrivHovedenu();
+        }
+    }
+
+    public void valgPostCæsarDekryptérMenu() {
+        int valg = sc.nextInt();
+        if (valg == 1) {
+            cæsarDekryptér();
+        } else if (valg == 2) {
+            cæsarKryptér();
+        } else {
+            udskrivHovedenu();
+        }
     }
 
     public int bogstavTilTal(char bogstav) {
@@ -169,6 +232,6 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Main obj = new Main();
-        obj.udskrivVigenéreMenu();
+        obj.udskrivHovedenu();
     }
 }
