@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -80,10 +81,32 @@ public class Main {
         return bogstav;
     }
 
+    public StringBuilder cæsarTekstTilKode(String tekst, int shift){
+        tekst = tekst.toUpperCase(Locale.ROOT);
+        StringBuilder kodetekst = new StringBuilder();
+        int kodeværdi;
+        for (int i = 0; i < tekst.length(); i++) {
+            char bogstav = tekst.charAt(i);
+            int talVærdi = bogstavTilTal(bogstav);
+            if (talVærdi != 0) {
+                kodeværdi = talVærdi + shift;
+            } else {
+                kodeværdi = 0;
+            }
+            if (kodeværdi > 29) {
+                kodeværdi = kodeværdi - 29;
+            }
+            char kodeBogstav = talTilBogstav(kodeværdi);
+            kodetekst.append(kodeBogstav);
+        }
+        return kodetekst;
+    }
+
 
     public static void main(String[] args) {
 	// write your code here
         Main obj = new Main();
-        obj.udskrivPostKryptérMenu();
+        String talværdi = String.valueOf(obj.cæsarTekstTilKode("Lasse Dall Mikkelsen", 11));
+        System.out.println(talværdi);
     }
 }
