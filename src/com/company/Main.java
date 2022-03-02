@@ -14,7 +14,7 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     public void udskrivHovedenu() {
-        System.out.printf("1) Cæsar %n2) Vigenére %n0) Exit %n");
+        System.out.printf("1) Cæsar %n2) Vigenére %n3) Dobbelt-sustitution %n0) Exit %n");
         valgHovedmenu();
     }
 
@@ -24,11 +24,37 @@ public class Main {
             udskrivCæsarMenu();
         } else if (valg == 2) {
             udskrivVigenéreMenu();
+        }else if (valg == 3) {
+            dobbeltSubstitutionKryptérDekryptér();
         } else if (valg == 0) {
             System.exit(0);
         } else {
             System.out.println("Indtast dit valg igen");
             valgHovedmenu();
+        }
+    }
+
+    public void dobbeltSubstitutionKryptérDekryptér(){
+        System.out.printf("Dobbelt-substitution kryptering og dekryptering %n  Indtast tekst %n");
+        String tekst = sc.nextLine();
+        tekst = sc.nextLine();
+        String kodetekst = String.valueOf(dobbeltSubstitution(tekst));
+        System.out.println("  Kodeteksten er");
+        System.out.println("   " + kodetekst );
+        udskrivPostDobbeltSubstitutionKryptérDekryptérMenu();
+    }
+
+    public void udskrivPostDobbeltSubstitutionKryptérDekryptérMenu(){
+        System.out.printf("1) Ny tekst %n2) Hovedmenu %n");
+        valgPostDobbeltSubstitutionKryptérMenu();
+    }
+
+    public void valgPostDobbeltSubstitutionKryptérMenu(){
+        int valg = sc.nextInt();
+        if (valg == 1) {
+            dobbeltSubstitutionKryptérDekryptér();
+        } else {
+            udskrivHovedenu();
         }
     }
 
@@ -295,25 +321,7 @@ public class Main {
         return originaltekst;
     }
 
-    public StringBuilder enigmaTekstTilKode(String tekst) {
-        tekst = tekst.toUpperCase(Locale.ROOT);
-        StringBuilder kodetekst = new StringBuilder();
-        for (int i = 0; i < tekst.length(); i++) {
-            char bogstav = tekst.charAt(i);
-            int bogstavværdi = bogstavTilTal(bogstav);
-            char bogstav2 = alfabet2[bogstavværdi];
-            int bogstavværdi2 = bogstavTilTal(bogstav2);
-            char bogstav3 = alfabet3[bogstavværdi2];
-            int bogstavværdi3 = bogstavTilTal(bogstav3);
-            char bogstav4 = alfabet2[bogstavværdi3];
-            int bogstavværdi4 = bogstavTilTal(bogstav4);
-            char kodebogstav = alfabet[bogstavværdi4];
-            kodetekst.append(kodebogstav);
-        }
-        return kodetekst;
-    }
-
-    public StringBuilder enigmaKodeTilTekst(String kodetekst) {
+    public StringBuilder dobbeltSubstitution(String kodetekst) {
         kodetekst = kodetekst.toUpperCase(Locale.ROOT);
         StringBuilder tekst = new StringBuilder();
         for (int i = 0; i < kodetekst.length(); i++) {
