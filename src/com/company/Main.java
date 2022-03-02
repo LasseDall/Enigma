@@ -14,7 +14,7 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     public void udskrivHovedenu() {
-        System.out.printf("1) Cæsar %n2) Vigenére %n3) Dobbelt-sustitution %n0) Exit %n");
+        System.out.printf("1) Cæsar %n2) Vigenére %n3) Dobbelt-substitution %n4) Enigma%n0) Exit %n");
         valgHovedmenu();
     }
 
@@ -28,13 +28,88 @@ public class Main {
             dobbeltSubstitutionKryptérDekryptér();
         } else if (valg == 0) {
             System.exit(0);
+        } else if (valg == 4) {
+            udskrivEnigmaMenu();
         } else {
             System.out.println("Indtast dit valg igen");
             valgHovedmenu();
         }
     }
 
-    public StringBuilder enigmaKryptér(String tekst, String gear) {
+    public void udskrivEnigmaMenu() {
+        System.out.printf("Enigma %n  1) Kryptér eller %n  2) Dekryptér %n");
+        valgEnigmaMenu();
+    }
+
+    public void valgEnigmaMenu() {
+            int valg = sc.nextInt();
+            if (valg == 1) {
+                enigmaKryptér();
+            } else if (valg == 2) {
+                enigmaDekryptér();
+            } else {
+                System.out.println("Indtast dit valg igen");
+                valgVigenéreMenu();
+            }
+    }
+
+    public void enigmaKryptér() {
+        System.out.printf("Enigma kryptering %n  Indtast tekst %n");
+        String tekst = sc.nextLine();
+        tekst = sc.nextLine();
+        System.out.println("  Vælg gear (3 sammenhængende bogstaver)");
+        String gear = sc.nextLine();
+        String kodetekst = String.valueOf(enigmaTekstTilKode(tekst, gear));
+        System.out.println("  Kodeteksten er");
+        System.out.println("   " + kodetekst );
+        udskrivPostEnigmaKryptérMenu();
+    }
+
+    public void enigmaDekryptér() {
+        System.out.printf("Enigma dekryptering %n  Indtast kodetekst %n");
+        String tekst = sc.nextLine();
+        tekst = sc.nextLine();
+        System.out.println("  Vælg gear (3 sammenhængende bogstaver)");
+        String gear = sc.nextLine();
+        String originaltekst = String.valueOf(enigmaKodeTilTekst(tekst, gear));
+        System.out.println("  Originalteksten er");
+        System.out.println("   " + originaltekst);
+        udskrivPostEnigmaDekryptérMenu();
+    }
+
+    public  void udskrivPostEnigmaKryptérMenu() {
+            System.out.printf("1) Ny tekst %n2) Dekryptér%n0) Hovedmenu %n");
+            valgPostEnigmaKryptérMenu();
+    }
+
+    public void udskrivPostEnigmaDekryptérMenu() {
+            System.out.printf("1) Ny kodetekst %n2) Kryptér%n0) Hovedmenu %n");
+            valgPostEnigmaDekryptérMenu();
+    }
+
+    public void valgPostEnigmaKryptérMenu() {
+            int valg = sc.nextInt();
+            if (valg == 1) {
+                enigmaKryptér();
+            } else if (valg == 2) {
+                enigmaDekryptér();
+            } else {
+                udskrivHovedenu();
+            }
+    }
+
+    public void valgPostEnigmaDekryptérMenu() {
+        int valg = sc.nextInt();
+        if (valg == 1) {
+            enigmaDekryptér();
+        } else if (valg == 2) {
+            enigmaKryptér();
+        } else {
+            udskrivHovedenu();
+        }
+    }
+
+    public StringBuilder enigmaTekstTilKode(String tekst, String gear) {
         tekst = tekst.toUpperCase(Locale.ROOT);
         gear = gear.toUpperCase(Locale.ROOT);
         StringBuilder kodetekst = new StringBuilder();
@@ -98,7 +173,7 @@ public class Main {
         return kodetekst;
     }
 
-    public StringBuilder enigmaDekryptér(String tekst, String gear) {
+    public StringBuilder enigmaKodeTilTekst(String tekst, String gear) {
         tekst = tekst.toUpperCase(Locale.ROOT);
         gear = gear.toUpperCase(Locale.ROOT);
         StringBuilder kodetekst = new StringBuilder();
@@ -498,8 +573,6 @@ public class Main {
         }
         return tekst;
     }
-
-
 
     public static void main(String[] args) {
 	// write your code here
