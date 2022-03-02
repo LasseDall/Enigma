@@ -7,6 +7,10 @@ public class Main {
 
     char[] alfabet = {' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Æ', 'Ø', 'Å'};
 
+    char[] alfabet2 = {' ', 'B', 'A', 'D', 'C', 'F', 'E', 'H', 'G', 'J', 'I', 'L', 'K', 'N', 'M', 'P', 'O', 'R', 'Q', 'T', 'S', 'V', 'U', 'X', 'W', 'Z', 'Y', 'Ø', 'Æ', 'Å'};
+
+    char[] alfabet3 = {' ', 'Å', 'X', 'O', 'K', 'T', 'L', 'N', 'H', 'P', 'Y', 'D', 'F', 'Z', 'G', 'C', 'I', 'S', 'Æ', 'Q', 'E', 'U', 'Ø', 'W', 'B', 'J', 'M', 'R', 'V', 'A'};
+
     Scanner sc = new Scanner(System.in);
 
     public void udskrivHovedenu() {
@@ -290,6 +294,43 @@ public class Main {
         }
         return originaltekst;
     }
+
+    public StringBuilder enigmaTekstTilKode(String tekst) {
+        tekst = tekst.toUpperCase(Locale.ROOT);
+        StringBuilder kodetekst = new StringBuilder();
+        for (int i = 0; i < tekst.length(); i++) {
+            char bogstav = tekst.charAt(i);
+            int bogstavværdi = bogstavTilTal(bogstav);
+            char bogstav2 = alfabet2[bogstavværdi];
+            int bogstavværdi2 = bogstavTilTal(bogstav2);
+            char bogstav3 = alfabet3[bogstavværdi2];
+            int bogstavværdi3 = bogstavTilTal(bogstav3);
+            char bogstav4 = alfabet2[bogstavværdi3];
+            int bogstavværdi4 = bogstavTilTal(bogstav4);
+            char kodebogstav = alfabet[bogstavværdi4];
+            kodetekst.append(kodebogstav);
+        }
+        return kodetekst;
+    }
+
+    public StringBuilder enigmaKodeTilTekst(String kodetekst) {
+        kodetekst = kodetekst.toUpperCase(Locale.ROOT);
+        StringBuilder tekst = new StringBuilder();
+        for (int i = 0; i < kodetekst.length(); i++) {
+            char bogstav = kodetekst.charAt(i);
+            int bogstavværdi = bogstavTilTal(bogstav);
+            char bogstav2 = alfabet2[bogstavværdi];
+            int bogstavværdi2 = bogstavTilTal(bogstav2);
+            char bogstav3 = alfabet3[bogstavværdi2];
+            int bogstavværdi3 = bogstavTilTal(bogstav3);
+            char bogstav4 = alfabet2[bogstavværdi3];
+            int bogstavværdi4 = bogstavTilTal(bogstav4);
+            char kodebogstav = alfabet[bogstavværdi4];
+            tekst.append(kodebogstav);
+        }
+        return tekst;
+    }
+
 
 
     public static void main(String[] args) {
