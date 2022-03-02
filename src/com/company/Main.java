@@ -34,6 +34,144 @@ public class Main {
         }
     }
 
+    public StringBuilder enigmaKryptér(String tekst, String gear) {
+        tekst = tekst.toUpperCase(Locale.ROOT);
+        gear = gear.toUpperCase(Locale.ROOT);
+        StringBuilder kodetekst = new StringBuilder();
+        char kodebogstav;
+        char gear1 = gear.charAt(0);
+        char gear2 = gear.charAt(1);
+        char gear3 = gear.charAt(2);
+        int gearA = bogstavTilTal(gear1);
+        int gearB = bogstavTilTal(gear2);
+        int gearC = bogstavTilTal(gear3);
+        int gearACount = gearA;
+        int gearBCount = gearB;
+        int gearCCount = gearC;
+        for (int i = 0; i < tekst.length(); i++) {
+            if (gearACount == 29) {
+                gearACount = 0;
+            }
+            if (gearACount == 5 || gearACount == 10 || gearACount == 15 || gearACount == 20 || gearACount == 25) {
+                gearBCount++;
+            }
+            if (gearBCount == 29) {
+                gearBCount = 0;
+            }
+            if (gearACount == 7 || gearACount == 17 || gearACount == 27) {
+                gearCCount++;
+            }
+            if (gearCCount == 29) {
+                gearCCount = 0;
+            }
+            char bogstav = tekst.charAt(i);
+            if (bogstavTilTal(bogstav) == 0) {
+                kodebogstav = ' ';
+            } else {
+                int bogstavværdi = bogstavTilTal(bogstav);
+                if (bogstavværdi > 29) {
+                    bogstavværdi = bogstavværdi - 29;
+                }
+                char bogstav2 = alfabet2[bogstavværdi];
+                int bogstavværdi2 = bogstavTilTal2(bogstav2) + gearACount;
+                if (bogstavværdi2 > 29) {
+                    bogstavværdi2 = bogstavværdi2 - 29;
+                }
+                char bogstav3 = alfabet3[bogstavværdi2];
+                int bogstavværdi3 = bogstavTilTal3(bogstav3) + gearBCount;
+                if (bogstavværdi3 > 29) {
+                    bogstavværdi3 = bogstavværdi3 - 29;
+                }
+                char bogstav4 = alfabet2[bogstavværdi3];
+                int bogstavværdi4 = bogstavTilTal2(bogstav4) + gearCCount;
+                if (bogstavværdi4 > 29) {
+                    bogstavværdi4 = bogstavværdi4 - 29;
+                }
+                if (bogstavværdi4 > 29) {
+                    bogstavværdi4 = bogstavværdi4 - 29;
+                }
+                kodebogstav = alfabet[bogstavværdi4];
+            }
+            kodetekst.append(kodebogstav);
+            gearACount++;
+        }
+        return kodetekst;
+    }
+
+    public StringBuilder enigmaDekryptér(String tekst, String gear) {
+        tekst = tekst.toUpperCase(Locale.ROOT);
+        gear = gear.toUpperCase(Locale.ROOT);
+        StringBuilder kodetekst = new StringBuilder();
+        char kodebogstav;
+        char gear1 = gear.charAt(0);
+        char gear2 = gear.charAt(1);
+        char gear3 = gear.charAt(2);
+        int gearA = bogstavTilTal(gear1);
+        int gearB = bogstavTilTal(gear2);
+        int gearC = bogstavTilTal(gear3);
+        int gearACount = gearA;
+        int gearBCount = gearB;
+        int gearCCount = gearC;
+        for (int i = 0; i < tekst.length(); i++) {
+            if (gearACount == 29) {
+                gearACount = 0;
+            }
+            if (gearACount == 5 || gearACount == 10 || gearACount == 15 || gearACount == 20 || gearACount == 25) {
+                gearBCount++;
+            }
+            if (gearBCount == 29) {
+                gearBCount = 0;
+            }
+            if (gearACount == 7 || gearACount == 17 || gearACount == 27) {
+                gearCCount++;
+            }
+            if (gearCCount == 29) {
+                gearCCount = 0;
+            }
+            char bogstav = tekst.charAt(i);
+            if (bogstavTilTal(bogstav) == 0) {
+                kodebogstav = ' ';
+            } else {
+                int bogstavværdi = bogstavTilTal(bogstav);
+                if (bogstavværdi < 0) {
+                    bogstavværdi = bogstavværdi + 29;
+                } else if (bogstavværdi > 29) {
+                    bogstavværdi -= 29;
+                }
+                char bogstav2 = alfabet2[bogstavværdi];
+                int bogstavværdi2 = bogstavTilTal2(bogstav2) - gearACount;
+                if (bogstavværdi2 < 0) {
+                    bogstavværdi2 = bogstavværdi2 + 29;
+                } else if (bogstavværdi2 > 29) {
+                    bogstavværdi2 -= 29;
+                }
+                char bogstav3 = alfabet3[bogstavværdi2];
+                int bogstavværdi3 = bogstavTilTal3(bogstav3) - gearBCount;
+                if (bogstavværdi3 < 0) {
+                    bogstavværdi3 = bogstavværdi3 + 29;
+                } else if (bogstavværdi3 > 29) {
+                    bogstavværdi3 -= 29;
+                }
+                char bogstav4 = alfabet2[bogstavværdi3];
+                int bogstavværdi4 = bogstavTilTal2(bogstav4) - gearCCount;
+                if (bogstavværdi4 < 0) {
+                    bogstavværdi4 = bogstavværdi4 + 29;
+                } else if (bogstavværdi4 > 29) {
+                    bogstavværdi4 -= 29;
+                }
+                if (bogstavværdi4 < 0) {
+                    bogstavværdi4 = bogstavværdi4 + 29;
+                } else if (bogstavværdi4 > 29) {
+                    bogstavværdi4 -= 29;
+                }
+                kodebogstav = alfabet[bogstavværdi4];
+            }
+            kodetekst.append(kodebogstav);
+            gearACount++;
+        }
+        return kodetekst;
+    }
+
     public void dobbeltSubstitutionKryptérDekryptér(){
         System.out.printf("Dobbelt-substitution kryptering og dekryptering %n  Indtast tekst %n");
         String tekst = sc.nextLine();
@@ -210,6 +348,28 @@ public class Main {
             if(bogstav ==alfabet[i]) {
                 index = i;
                 i = alfabet.length;
+            }
+        }
+        return index;
+    }
+
+    public int bogstavTilTal2(char bogstav){
+        int index = -1;
+        for (int i=0; i< alfabet2.length; i++){
+            if(bogstav ==alfabet2[i]){
+                index = i;
+                i = alfabet2.length;
+            }
+        }
+        return index;
+    }
+
+    public int bogstavTilTal3(char bogstav){
+        int index = -1;
+        for (int i=0; i< alfabet3.length; i++){
+            if(bogstav ==alfabet3[i]){
+                index = i;
+                i = alfabet3.length;
             }
         }
         return index;
